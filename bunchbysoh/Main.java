@@ -9,6 +9,25 @@ public class Main {
 
   static CountsBySoH countBatteriesByHealth(int[] presentCapacities) {
     CountsBySoH counts = new CountsBySoH();
+    int n = presentCapacities.length();
+    int[] a = new int[n];
+    for(int i = 0; i < n; i++)
+      {
+        a[i] = 100 * (presentCapacities[i] / 120);//calculating state-of-health
+      }
+    //classifying battery by state-of-health
+    for(int j = 0; j < n; j++){
+    if( a[i] < 100 && a[i] > 80){
+      healthy += 1;
+    }
+      else if(a[i] < 80 && a[i] > 62){
+      exchange += 1;
+      }
+      else{
+      failed += 1;
+    }
+      
+    counts = failed;// The number of failed batteries
     return counts;
   }
 
@@ -19,6 +38,7 @@ public class Main {
     assert(counts.healthy == 2);
     assert(counts.exchange == 3);
     assert(counts.failed == 1);
+    System.out.println(" The number of failed batteries :" + counts);
     System.out.println("Done counting :)\n");
   }
 
